@@ -20,7 +20,8 @@
           </div>
         </div>
 
-        <form id="setupForm" autocomplete="off">
+        <form id="setupForm" autocomplete="off" aria-describedby="setupHint">
+          <p id="setupHint" class="sr-only">Enter a city, choose trip details and at least one interest, then start exploring.</p>
           <label>City
             <input id="city" name="city" value="New Delhi" required minlength="2" maxlength="80">
           </label>
@@ -55,12 +56,12 @@
 
       <section id="results" class="results" aria-live="polite">
         <nav class="tabs" aria-label="Wanderlore sections">
-          <button data-tab="smart" class="active">Smart Picks</button>
-          <button data-tab="hidden">Off Path</button>
-          <button data-tab="detail">Place Detail</button>
-          <button data-tab="events">Happening Now</button>
-          <button data-tab="threads">Local Threads</button>
-          <button data-tab="passport">Passport</button>
+          <button data-tab="smart" class="active" aria-current="page">Smart Picks</button>
+          <button data-tab="hidden" disabled>Off Path</button>
+          <button data-tab="detail" disabled>Place Detail</button>
+          <button data-tab="events" disabled>Happening Now</button>
+          <button data-tab="threads" disabled>Local Threads</button>
+          <button data-tab="passport" disabled>Passport</button>
         </nav>
         <div id="view" class="view"></div>
       </section>

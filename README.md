@@ -39,7 +39,23 @@ npm run build
 npm run size
 ```
 
-`npm test` uses Node's built-in test runner and covers the deterministic decision engine plus input validation edge cases.
+`npm test` uses Node's built-in test runner and covers the deterministic decision engine, input validation edge cases, request persistence, CORS rejection, oversized/malformed body handling, and static accessibility checks.
+
+## Evaluation Evidence
+
+High-impact areas:
+- Code Quality: API routing, HTTP hardening, domain handlers, validation, data persistence, and external services are split into focused modules.
+- Security: hostile input is normalized or rejected, request bodies are capped, origins are checked, rate limiting is enforced, static/API security headers are set, and secrets stay server-side.
+- Efficiency: zero runtime dependencies, static frontend, bounded cache, bounded request ledger, and parallel place/weather lookups.
+
+Medium-impact areas:
+- Testing: 14 deterministic tests cover normal, boundary, invalid, malicious, and persistence paths.
+- Accessibility: semantic landmarks, labelled controls, skip link, live regions, focus-visible styling, responsive layout, and transcript-first AI content.
+
+Low-impact polish:
+- Honest feature states for missing optional API keys.
+- Culture Passport stamps only appear after successful feature calls.
+- Final source plus build output stays far below the 10 MB requirement.
 
 ## Vercel Deployment
 

@@ -98,7 +98,13 @@ async function loadSmartPicks(context) {
 
 function setTab(tab) {
   state.activeTab = tab;
-  document.querySelectorAll(".tabs button").forEach((button) => button.classList.toggle("active", button.dataset.tab === tab));
+  document.querySelectorAll(".tabs button").forEach((button) => {
+    const active = button.dataset.tab === tab;
+    button.disabled = !state.data;
+    button.classList.toggle("active", active);
+    if (active) button.setAttribute("aria-current", "page");
+    else button.removeAttribute("aria-current");
+  });
   if (!state.data) {
     renderEmpty();
     return;
@@ -116,7 +122,7 @@ function renderContext(data) {
   const { lat, lng } = data.city;
   $("contextPanel").innerHTML = `
     <strong>${escapeHtml(data.city.city)}</strong>
-    <span>${escapeHtml(data.weather.label)}, ${Math.round(data.weather.temperatureC)} C</span>
+    <span>${escapeHtml(data.weather.label)}, ${Math.round(data.weather.temperatureC)} °C</span>
     <span>Day ${data.context.tripDay} of ${data.context.tripDaysTotal} · ${escapeHtml(data.context.timeOfDay)}</span>
     <iframe class="map-frame" title="OpenStreetMap view of ${escapeHtml(data.city.city)}" loading="lazy"
       src="https://www.openstreetmap.org/export/embed.html?bbox=${lng - delta}%2C${lat - delta}%2C${lng + delta}%2C${lat + delta}&layer=mapnik&marker=${lat}%2C${lng}"></iframe>
@@ -298,7 +304,8 @@ function renderEmpty() {
 }
 
 function renderStatus(message, tone = "") {
-  view.innerHTML = `<div class="status ${tone}">${escapeHtml(message)}</div>`;
+  const role = tone === "bad" ? "alert" : "status";
+  view.innerHTML = `<div class="status ${tone}" role="${role}">${escapeHtml(message)}</div>`;
 }
 
 function sectionHead(title, detail, action = "") {

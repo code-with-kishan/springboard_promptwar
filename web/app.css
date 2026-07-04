@@ -16,7 +16,7 @@
 body { margin: 0; }
 button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
-button:disabled { cursor: not-allowed; opacity: 0.6; }
+button:disabled { cursor: not-allowed; opacity: 0.58; }
 
 .shell {
   min-height: 100vh;
@@ -40,6 +40,15 @@ button:disabled { cursor: not-allowed; opacity: 0.6; }
 }
 
 .skip-link:focus { top: 12px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
 
 .setup {
   color: #fffaf4;
@@ -240,6 +249,11 @@ p { margin: 0; }
 .status.good {
   border-color: var(--sage);
   background: #edf5e9;
+}
+
+.status[role="status"],
+.status[role="alert"] {
+  min-height: 48px;
 }
 
 .detail {
