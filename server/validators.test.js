@@ -9,10 +9,12 @@ test("validates and normalizes context input", () => {
     tripDaysTotal: 4,
     interests: ["food", "food", "art"],
     budget: "$$",
+    timeOfDay: "16:30",
     recentCategoriesShown: Array(20).fill("food")
   });
   assert.equal(result.city, "New Delhi");
   assert.deepEqual(result.interests, ["food", "art"]);
+  assert.equal(result.timeOfDay, "16:30");
   assert.equal(result.recentCategoriesShown.length, 12);
 });
 

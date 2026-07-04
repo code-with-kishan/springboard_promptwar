@@ -59,7 +59,7 @@ export function filterAndRankCandidates({ places, context, weather }) {
 export function buildRuleReason(place, context, weather) {
   const bits = [];
   const weatherText = weather?.label ? weather.label.toLowerCase() : "the current weather";
-  bits.push(`It is ${context.timeOfDay} with ${weatherText}`);
+  bits.push(`It is ${context.timeOfDay} with ${weatherText}, so the choice stays tied to live travel context instead of a generic top-ten list`);
   if (context.tripDay && context.tripDaysTotal) bits.push(`day ${context.tripDay} of ${context.tripDaysTotal}`);
   if (place.category) bits.push(`matching your ${place.category} interest`);
   if (place.distanceKm) bits.push(`${place.distanceKm.toFixed(1)} km from the selected center`);

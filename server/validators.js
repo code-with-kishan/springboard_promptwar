@@ -14,8 +14,9 @@ export function validateContext(value) {
   });
   const budget = value.budget === undefined ? "$$" : cleanText(value.budget, 1, 4, "budget");
   if (!BUDGETS.has(budget)) badRequest("Unsupported budget");
+  const timeOfDay = value.timeOfDay === undefined ? undefined : cleanTimeOfDay(value.timeOfDay);
   const recentCategoriesShown = (value.recentCategoriesShown || []).slice(-12).map((item) => cleanText(item, 1, 30, "recent category"));
-  return { city, tripDay, tripDaysTotal, interests: [...new Set(interests)], budget, recentCategoriesShown };
+  return { city, tripDay, tripDaysTotal, interests: [...new Set(interests)], budget, ...(timeOfDay ? { timeOfDay } : {}), recentCategoriesShown };
 }
 
 export function validatePlaceContext(value) {
@@ -72,6 +73,12 @@ function cleanEmail(value) {
   const email = cleanText(value, 5, 120, "email").toLowerCase();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) badRequest("email must be valid");
   return email;
+}
+
+function cleanTimeOfDay(value) {
+  const time = cleanText(value, 5, 5, "timeOfDay");
+  if (!/^\d{2}:\d{2}$/.test(time)) badRequest("timeOfDay must use HH:MM format");
+  return time;
 }
 
 function cleanText(value, min, max, label) {

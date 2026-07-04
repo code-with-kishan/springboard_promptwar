@@ -3,7 +3,7 @@ import { setTab } from "../navigation.js";
 import { state } from "../state.js";
 
 export function renderHidden() {
-  view.innerHTML = sectionHead("Off the Path", "Lower-visibility places from the same live result set.") +
+  view.innerHTML = sectionHead("Off the Path", "Lower-visibility cultural places from the same live result set.") +
     `<div class="grid">${state.data.hiddenGems.map(hiddenGemButton).join("")}</div>`;
   view.querySelectorAll("button[data-id]").forEach((button) => {
     button.addEventListener("click", () => {

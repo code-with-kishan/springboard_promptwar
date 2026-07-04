@@ -3,7 +3,7 @@ import { postJson } from "../apiClient.js";
 import { awardStamp, state } from "../state.js";
 
 export async function renderThreads() {
-  view.innerHTML = sectionHead("Local Threads", "Real OSM cultural places with a request ledger transaction.", "<button class='ghost' id='reloadHosts'>Reload</button>") +
+  view.innerHTML = sectionHead("Local Threads", "Real cultural hosts matched from live place data and saved through a request ledger transaction.", "<button class='ghost' id='reloadHosts'>Reload</button>") +
     `<div id="hostList" class="grid"><div class="status" role="status">Loading local hosts.</div></div>`;
   $("reloadHosts").addEventListener("click", renderThreads);
   try {

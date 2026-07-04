@@ -3,7 +3,7 @@ import { postJson } from "../apiClient.js";
 import { awardStamp, state } from "../state.js";
 
 export async function renderEvents() {
-  view.innerHTML = sectionHead("Happening Now", "Trip-window events from Ticketmaster when configured.", "<button class='ghost' id='reloadEvents'>Reload</button>") +
+  view.innerHTML = sectionHead("Happening Now", "Trip-window events matched to the visitor's schedule and interests.", "<button class='ghost' id='reloadEvents'>Reload</button>") +
     `<div id="eventList" class="view"><div class="status" role="status">Loading events.</div></div>`;
   $("reloadEvents").addEventListener("click", renderEvents);
   try {

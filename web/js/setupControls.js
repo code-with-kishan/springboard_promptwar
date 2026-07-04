@@ -32,6 +32,7 @@ export function readContext() {
     tripDaysTotal: Number($("tripDaysTotal").value),
     interests: selected.map((button) => button.dataset.value),
     budget: $("budget").value,
+    timeOfDay: new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false }),
     recentCategoriesShown: state.recentCategoriesShown
   };
 }

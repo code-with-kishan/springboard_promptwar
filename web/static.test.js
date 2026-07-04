@@ -15,6 +15,7 @@ test("static app has core accessibility landmarks and labels", async () => {
   assert.match(html, /role="tab" aria-selected="true"/);
   assert.match(html, /role="tabpanel" aria-live="polite"/);
   assert.match(html, /problem-line/);
+  assert.match(html, /answers the challenge directly/);
   assert.match(html, /aria-labelledby="tab-smart"/);
   assert.match(html, /<script type="module" src="\/app.js"><\/script>/);
 });
@@ -34,12 +35,12 @@ test("static app preserves security and accessible focus styles", async () => {
   assert.match(dom, /escapeHtml/);
   assert.match(app, /setTab\("smart"\)/);
   assert.match(await fs.readFile("web/js/tabKeys.js", "utf8"), /ArrowRight|ArrowLeft|Home|End/);
-  assert.ok(views.length >= 6);
+  assert.ok(views.length >= 7);
   assert.doesNotMatch(`${app}\n${dom}`, /error\.stack/);
 });
 
 test("frontend modules keep one responsibility per screen", async () => {
-  const expected = ["common.js", "detail.js", "events.js", "hidden.js", "passport.js", "smart.js", "threads.js"];
+  const expected = ["challenge.js", "common.js", "detail.js", "events.js", "hidden.js", "passport.js", "smart.js", "threads.js"];
   const views = await fs.readdir("web/js/views");
   assert.deepEqual(views.sort(), expected.sort());
 });

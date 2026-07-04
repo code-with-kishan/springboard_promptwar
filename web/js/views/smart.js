@@ -2,9 +2,11 @@ import { $, escapeHtml, sectionHead, view } from "../dom.js";
 import { setTab } from "../navigation.js";
 import { loadSmartPicks } from "../setup.js";
 import { rememberCategory, state } from "../state.js";
+import { renderChallengeSummary } from "./challenge.js";
 
 export function renderSmart() {
-  view.innerHTML = sectionHead("Smart Picks", "Live OSM places ranked through the deterministic context engine.", "<button class='ghost' id='refresh'>Refresh</button>") +
+  view.innerHTML = sectionHead("Smart Picks", "Live OSM places ranked for weather, timing, trip stage, and interests.", "<button class='ghost' id='refresh'>Refresh</button>") +
+    renderChallengeSummary() +
     `<div class="grid">${state.data.picks.map(placeCard).join("")}</div>`;
   $("refresh").addEventListener("click", () => loadSmartPicks(state.context));
   bindPlaceActions();

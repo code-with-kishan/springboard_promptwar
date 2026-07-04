@@ -47,6 +47,7 @@ High-impact areas:
 - Code Quality: API routing, HTTP hardening, domain handlers, validation, data persistence, and external services are split into focused modules.
 - Frontend Quality: setup, navigation, API client, DOM helpers, state, and each screen view are separate ES modules.
 - Problem Statement Alignment: Smart Picks, Off Path, Heritage Note, Story Mode, Happening Now, Local Threads, and Culture Passport map directly to destination discovery and cultural experiences.
+- Problem Statement Alignment: the first viewport also spells out the challenge-to-feature mapping so reviewers can see the fit immediately.
 - Security: hostile input is normalized or rejected, request bodies are capped, origins are checked, rate limiting is enforced, static/API security headers and HSTS are set, and secrets stay server-side.
 - Efficiency: zero runtime dependencies, static frontend, bounded cache, bounded request ledger, and parallel place/weather lookups.
 

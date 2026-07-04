@@ -10,7 +10,7 @@ export async function smartPicks(raw) {
   const [places, weather] = await Promise.all([fetchPlaces(city), fetchWeather(city)]);
   const contextWithTime = {
     ...context,
-    timeOfDay: new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: false })
+    timeOfDay: context.timeOfDay || new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false })
   };
   const ranked = filterAndRankCandidates({ places, context: contextWithTime, weather });
   const ai = await rankWithGemini({ ranked, context: contextWithTime, weather });
