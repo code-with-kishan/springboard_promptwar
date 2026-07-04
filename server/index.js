@@ -9,6 +9,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const staticRoot = path.join(root, "dist");
 const staticHeaders = {
   "content-security-policy": "default-src 'self'; connect-src 'self'; frame-src https://www.openstreetmap.org; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
+  "cross-origin-opener-policy": "same-origin",
+  "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
   "referrer-policy": "no-referrer",
   "x-content-type-options": "nosniff"
 };

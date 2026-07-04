@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light">
-    <meta name="description" content="Wanderlore context-aware cultural discovery assistant">
+    <meta name="description" content="Wanderlore helps travelers discover destinations, hidden gems, heritage stories, local events, and cultural connections with live context-aware AI.">
     <title>Wanderlore</title>
     <link rel="stylesheet" href="/app.css">
   </head>
@@ -19,6 +19,7 @@
             <span>Context-aware cultural discovery</span>
           </div>
         </div>
+        <p class="problem-line">Generic travel lists miss weather, timing, trip stage, and local context. Wanderlore fills that gap with live signals and grounded recommendations.</p>
 
         <form id="setupForm" autocomplete="off" aria-describedby="setupHint">
           <p id="setupHint" class="sr-only">Enter a city, choose trip details and at least one interest, then start exploring.</p>
@@ -55,15 +56,15 @@
       </aside>
 
       <section id="results" class="results" aria-live="polite">
-        <nav class="tabs" aria-label="Wanderlore sections">
-          <button data-tab="smart" class="active" aria-current="page">Smart Picks</button>
-          <button data-tab="hidden" disabled>Off Path</button>
-          <button data-tab="detail" disabled>Place Detail</button>
-          <button data-tab="events" disabled>Happening Now</button>
-          <button data-tab="threads" disabled>Local Threads</button>
-          <button data-tab="passport" disabled>Passport</button>
+        <nav class="tabs" aria-label="Wanderlore sections" role="tablist">
+          <button id="tab-smart" data-tab="smart" class="active" aria-current="page" role="tab" aria-selected="true" aria-controls="view">Smart Picks</button>
+          <button id="tab-hidden" data-tab="hidden" disabled role="tab" aria-selected="false" aria-controls="view">Off Path</button>
+          <button id="tab-detail" data-tab="detail" disabled role="tab" aria-selected="false" aria-controls="view">Place Detail</button>
+          <button id="tab-events" data-tab="events" disabled role="tab" aria-selected="false" aria-controls="view">Happening Now</button>
+          <button id="tab-threads" data-tab="threads" disabled role="tab" aria-selected="false" aria-controls="view">Local Threads</button>
+          <button id="tab-passport" data-tab="passport" disabled role="tab" aria-selected="false" aria-controls="view">Passport</button>
         </nav>
-        <div id="view" class="view"></div>
+        <div id="view" class="view" role="tabpanel" aria-live="polite" aria-labelledby="tab-smart"></div>
       </section>
     </main>
     <script type="module" src="/app.js"></script>

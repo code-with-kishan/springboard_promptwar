@@ -39,22 +39,25 @@ npm run build
 npm run size
 ```
 
-`npm test` uses Node's built-in test runner and covers the deterministic decision engine, input validation edge cases, request persistence, CORS rejection, oversized/malformed body handling, and static accessibility checks.
+`npm test` uses Node's built-in test runner and covers the deterministic decision engine, API routing, Gemini-backed content routes, optional-feature failure paths, input validation edge cases, request persistence, CORS rejection, oversized/malformed body handling, Vercel security configuration, static accessibility checks, and the code quality gate.
 
 ## Evaluation Evidence
 
 High-impact areas:
 - Code Quality: API routing, HTTP hardening, domain handlers, validation, data persistence, and external services are split into focused modules.
-- Security: hostile input is normalized or rejected, request bodies are capped, origins are checked, rate limiting is enforced, static/API security headers are set, and secrets stay server-side.
+- Frontend Quality: setup, navigation, API client, DOM helpers, state, and each screen view are separate ES modules.
+- Problem Statement Alignment: Smart Picks, Off Path, Heritage Note, Story Mode, Happening Now, Local Threads, and Culture Passport map directly to destination discovery and cultural experiences.
+- Security: hostile input is normalized or rejected, request bodies are capped, origins are checked, rate limiting is enforced, static/API security headers and HSTS are set, and secrets stay server-side.
 - Efficiency: zero runtime dependencies, static frontend, bounded cache, bounded request ledger, and parallel place/weather lookups.
 
 Medium-impact areas:
-- Testing: 14 deterministic tests cover normal, boundary, invalid, malicious, and persistence paths.
-- Accessibility: semantic landmarks, labelled controls, skip link, live regions, focus-visible styling, responsive layout, and transcript-first AI content.
+- Testing: deterministic tests cover normal, boundary, invalid, malicious, persistence, API routing, Gemini content paths, optional-feature failure paths, deployment config, static accessibility, and quality-gate paths.
+- Accessibility: semantic landmarks, labelled controls, skip link, live regions, focus-visible styling, keyboard tab navigation, responsive layout, and transcript-first AI content.
 
 Low-impact polish:
 - Honest feature states for missing optional API keys.
 - Culture Passport stamps only appear after successful feature calls.
+- The UI states the actual problem being solved right in the first viewport, without turning into a marketing page.
 - Final source plus build output stays far below the 10 MB requirement.
 
 ## Vercel Deployment

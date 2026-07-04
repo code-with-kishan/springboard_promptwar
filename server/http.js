@@ -11,6 +11,8 @@ export function applyApiSecurityHeaders(request, response) {
   response.setHeader("access-control-allow-headers", "content-type");
   response.setHeader("content-security-policy", "default-src 'none'; frame-ancestors 'none'");
   response.setHeader("cross-origin-resource-policy", "same-origin");
+  response.setHeader("cross-origin-opener-policy", "same-origin");
+  response.setHeader("permissions-policy", "camera=(), microphone=(), geolocation=(), payment=()");
   response.setHeader("referrer-policy", "no-referrer");
   response.setHeader("x-content-type-options", "nosniff");
 }

@@ -6,22 +6,21 @@ import {
   sendJson
 } from "./http.js";
 import {
-  connectionRequest,
-  healthPayload,
-  heritageNote,
-  localEvents,
-  smartPicks,
-  storyMode,
-  threadHosts
-} from "./handlers.js";
+  connectionRequest as getConnectionRequest,
+  localEvents as getLocalEvents,
+  threadHosts as getThreadHosts
+} from "./routes/community.js";
+import { healthPayload as getHealthPayload } from "./routes/health.js";
+import { heritageNote as getHeritageNote, storyMode as getStoryMode } from "./routes/content.js";
+import { smartPicks as getSmartPicks } from "./routes/smart.js";
 
 const postRoutes = new Map([
-  ["/api/context/smart-picks", { handler: smartPicks, status: 200 }],
-  ["/api/place/heritage", { handler: heritageNote, status: 200 }],
-  ["/api/place/story", { handler: storyMode, status: 200 }],
-  ["/api/events", { handler: localEvents, status: 200 }],
-  ["/api/threads/hosts", { handler: threadHosts, status: 200 }],
-  ["/api/threads/request", { handler: connectionRequest, status: 201 }]
+  ["/api/context/smart-picks", { handler: getSmartPicks, status: 200 }],
+  ["/api/place/heritage", { handler: getHeritageNote, status: 200 }],
+  ["/api/place/story", { handler: getStoryMode, status: 200 }],
+  ["/api/events", { handler: getLocalEvents, status: 200 }],
+  ["/api/threads/hosts", { handler: getThreadHosts, status: 200 }],
+  ["/api/threads/request", { handler: getConnectionRequest, status: 201 }]
 ]);
 
 export async function handleApiRequest(request, response) {
@@ -38,7 +37,7 @@ export async function handleApiRequest(request, response) {
 
     const route = new URL(request.url, "http://localhost").pathname;
     if (route === "/api/health" && request.method === "GET") {
-      sendJson(response, 200, healthPayload());
+      sendJson(response, 200, getHealthPayload());
       return;
     }
 
@@ -54,7 +53,7 @@ export async function handleApiRequest(request, response) {
 
     sendJson(response, match.status, await match.handler(await readJsonBody(request)));
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") console.error("[api]", error.code || "REQUEST_FAILED", error.message);
+    if (process.env.NODE_ENV === "development") console.error("[api]", error.code || "REQUEST_FAILED", error.message);
     const status = error.status || 500;
     sendJson(response, status, {
       error: {
